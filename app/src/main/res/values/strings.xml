@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">LightAnalyzer</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="select_measure_type">Measure Type</string>
+    <string name="street_type">Street</string>
+    <string name="point_type">Point</string>
+
+    <!-- Road flow -->
+    <string name="street_name_lbl">Street Name</string>
+    <string name="lane_length_lbl">Poles in lane</string>
+    <string name="lane_count">Number of lanes</string>
+
+    <!-- General -->
+    <string name="backBtnLbl">Back</string>
+    <string name="nextBtnLbl">Next</string>
+    <string name="exportBtnText">Export</string>
+    <string name="newProjectBTN">New measure</string>
+
+    <!-- Activity titles-->
+    <string name="title_activity_activity__set_road_data">Enter Road Data</string>
+    <string name="title_activity_activity__measure_road">"Measure road "</string>
+
+    <!-- Extras -->
+
+</resources>

@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.yahid.lightanalyzer.Activity_SetRoadData">
+
+    <TextView android:text="@string/street_name_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/streetNameLbl"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentLeft="true"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/streetNameLbl"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/streetNameET" />
+
+    <TextView android:text="@string/lane_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/streetNameLbl"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/laneCountLbl"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/laneCountLbl"
+        android:layout_alignTop="@id/laneCountLbl"
+        android:layout_below="@id/streetNameET"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:inputType="numberSigned"
+        android:id="@+id/laneCountET" />
+
+    <TextView android:text="@string/lane_length_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/laneCountLbl"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/laneLengthLbl"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/laneLengthLbl"
+        android:layout_alignTop="@id/laneLengthLbl"
+        android:layout_below="@id/laneCountET"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:inputType="numberSigned"
+        android:id="@+id/laneLengthET"/>
+
+    <Button
+        android:id="@+id/setDataNextBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nextBtnLbl"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:enabled="false"
+        android:onClick="nextBTN_clickHandler"/>
+
+</RelativeLayout>
