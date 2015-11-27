@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yahid.lightanalyzer" >
 
-    <uses-feature android:name="android.hardware.usb.host" />;
+    <uses-feature android:name="android.hardware.usb.host" />
+;
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -27,6 +28,10 @@
         <activity
             android:name=".Activity_MeasureRoad"
             android:label="@string/title_activity_activity__measure_road" >
+        </activity>
+        <activity
+            android:name=".Activity_ReadFiles"
+            android:label="@string/title_activity_activity__read_files" >
         </activity>
     </application>
 

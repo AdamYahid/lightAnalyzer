@@ -32,7 +32,7 @@ public class LaneVO {
         return data[index];
     }
 
-    public double setPointValue(int index,double value) {
+    public void setPointValue(int index,double value) {
         this.data[index] = value;
     }
 

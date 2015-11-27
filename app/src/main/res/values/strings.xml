@@ -21,6 +21,7 @@
     <!-- Activity titles-->
     <string name="title_activity_activity__set_road_data">Enter Road Data</string>
     <string name="title_activity_activity__measure_road">"Measure road "</string>
+    <string name="title_activity_activity__read_files">Activity_ReadFiles</string>
 
     <!-- Extras -->
 

@@ -14,9 +14,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-import com.yahid.lightanalyzer.databinding.MeasureRoadBinding;
-
 import java.io.File;
 
 public class Activity_MeasureRoad extends AppCompatActivity implements View.OnClickListener {
@@ -29,9 +26,7 @@ public class Activity_MeasureRoad extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MeasureRoadBinding binding = DataBindingUtil.setContentView(this,R.layout.measure_road);
-
-        binding.setActiveRoad(SharedData.activeRoad);
+       setContentView(R.layout.measure_road);
 
 
 
@@ -44,14 +39,14 @@ public class Activity_MeasureRoad extends AppCompatActivity implements View.OnCl
         colCount = intent.getIntExtra(LightAnalyzerExtras.EXTRA_POLE_COUNT, 10);
 
 
-        /*
+
         // Create the text view
         TextView streetTV = (TextView) findViewById(R.id.streetNameTV);
         streetTV.setText(streetTV.getText() + ":" + streetName);
 
         TextView poleHeightTV = (TextView) findViewById(R.id.poleHeightTV);
         poleHeightTV.setText(poleHeightTV.getText() + ":" + Integer.toString(poleHeight));
-        */
+
 
         LinearLayout body = (LinearLayout) findViewById(R.id.bodyLayout);
         for (int i = 0; i < rowCount; i++) {
@@ -103,6 +98,14 @@ public class Activity_MeasureRoad extends AppCompatActivity implements View.OnCl
     }
 
     public void exportHandler(View view) {
+        String fileAsString = SharedData.activeRoad.writeJSON();
+        String fileName = SharedData.activeRoad.getStreetName();
+
+        LocalProxy.saveProject(this,fileName,fileAsString);
+    }
+
+    /*
+    public void exportHandler(View view) {
         ProjectVO proj = new ProjectVO(streetName,rowCount,colCount,poleHeight);
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < colCount; j++) {
@@ -131,4 +134,5 @@ public class Activity_MeasureRoad extends AppCompatActivity implements View.OnCl
         startActivity(Intent.createChooser(i,"send email:"));
 
     }
+    */
 }

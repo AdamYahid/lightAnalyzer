@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LightAnalyzer.iml" filepath="$PROJECT_DIR$/LightAnalyzer.iml" />
       <module fileurl="file://$PROJECT_DIR$/YoctoAPI/YoctoAPI.iml" filepath="$PROJECT_DIR$/YoctoAPI/YoctoAPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/jxl/jxl.iml" filepath="$PROJECT_DIR$/jxl/jxl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lightAnalyzer.iml" filepath="$PROJECT_DIR$/lightAnalyzer.iml" />
     </modules>
   </component>
 </project>

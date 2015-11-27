@@ -1,7 +1,10 @@
 package com.yahid.lightanalyzer;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 
@@ -80,7 +83,30 @@ public class LocalProxy {
         {
             e.printStackTrace();
         }
+    }
 
+    public static void saveProject(Context context,String fileName, String projectAsJson) {
+        try {
+            File myFile = new File(context.getFilesDir(),fileName + ".lap");
+            myFile.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter =
+                    new OutputStreamWriter(fOut);
+            myOutWriter.append(projectAsJson);
+            myOutWriter.close();
+            fOut.close();
+        } catch (Exception e) {
+        }
+    }
 
+    public static ArrayList<File> getFileList(Context context) {
+        ArrayList<File> inFiles = new ArrayList<File>();
+        File[] files = context.getFilesDir().listFiles();
+        for (File file : files) {
+                if(file.getName().endsWith(".lap")){
+                    inFiles.add(file);
+            }
+        }
+        return inFiles;
     }
 }

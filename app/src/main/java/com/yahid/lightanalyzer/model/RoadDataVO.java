@@ -20,6 +20,11 @@ public class RoadDataVO {
     public static final String POLE_HEIGHT_TAG = "poleHeight";
     public static final String LIGHT_DATA_TAG = "lightData";
 
+    public RoadDataVO()
+    {
+
+    }
+
     public RoadDataVO(String name, int laneCount, int laneLength, int poleHeight) {
         this.streetName = name;
         this.laneCount = laneCount;
@@ -89,5 +94,12 @@ public class RoadDataVO {
         } catch (JSONException ex) {
         }
         return retAsObj.toString();
+    }
+
+    public void readJSON(JSONObject json) {
+        try {
+            this.streetName = json.getString(STREET_NAME_TAG);
+        }
+        catch (JSONException ex) {}
     }
 }
