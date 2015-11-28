@@ -1,5 +1,6 @@
 package com.yahid.lightanalyzer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -14,9 +15,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yahid.lightanalyzer.model.RoadDataVO;
+
 import java.io.File;
 
-public class Activity_MeasureRoad extends AppCompatActivity implements View.OnClickListener {
+public class Activity_MeasureRoad extends Activity implements View.OnClickListener {
 
     String streetName;
     int poleHeight;
@@ -33,20 +36,17 @@ public class Activity_MeasureRoad extends AppCompatActivity implements View.OnCl
         // Get the message from the intent
         Intent intent = getIntent();
 
-        streetName = intent.getStringExtra(LightAnalyzerExtras.EXTRA_STREET_NAME);
-        poleHeight = intent.getIntExtra(LightAnalyzerExtras.EXTRA_POLE_HEIGHT, 0);
-        rowCount = intent.getIntExtra(LightAnalyzerExtras.EXTRA_LANE_COUNT, 4);
-        colCount = intent.getIntExtra(LightAnalyzerExtras.EXTRA_POLE_COUNT, 10);
-
-
+        RoadDataVO activeRoad = SharedData.activeRoad;
 
         // Create the text view
         TextView streetTV = (TextView) findViewById(R.id.streetNameTV);
-        streetTV.setText(streetTV.getText() + ":" + streetName);
+        streetTV.setText(activeRoad.getStreetName());
 
         TextView poleHeightTV = (TextView) findViewById(R.id.poleHeightTV);
-        poleHeightTV.setText(poleHeightTV.getText() + ":" + Integer.toString(poleHeight));
+        poleHeightTV.setText(poleHeightTV.getText() + ":" + Integer.toString(activeRoad.getLaneCount()));
 
+        rowCount = activeRoad.getLaneCount();
+        colCount = activeRoad.getLaneLength();
 
         LinearLayout body = (LinearLayout) findViewById(R.id.bodyLayout);
         for (int i = 0; i < rowCount; i++) {
@@ -56,7 +56,7 @@ public class Activity_MeasureRoad extends AppCompatActivity implements View.OnCl
                 Button btn = new Button(this);
                 btn.setOnClickListener(this);
                 btn.setSelected(false);
-                btn.setText("0.0");
+                btn.setText(String.valueOf(activeRoad.getDataPoint(i,j)));
                 btn.setId(i*10 + j);
                 row.addView(btn);
 

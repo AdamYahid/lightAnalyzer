@@ -1,5 +1,6 @@
 package com.yahid.lightanalyzer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 import com.yahid.lightanalyzer.model.RoadDataVO;
 
-public class Activity_SetRoadData extends AppCompatActivity{
+public class Activity_SetRoadData extends Activity {
 
     TextWatcher validator;
     EditText streetName;

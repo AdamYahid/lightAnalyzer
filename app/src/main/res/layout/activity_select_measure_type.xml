@@ -30,6 +30,13 @@
         android:layout_alignParentBottom="true"
         android:onClick="nextBTN_clickHandler"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load projects"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="loadBTN_clickHandler"/>
 
 
 </RelativeLayout>

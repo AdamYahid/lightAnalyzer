@@ -99,6 +99,15 @@ public class RoadDataVO {
     public void readJSON(JSONObject json) {
         try {
             this.streetName = json.getString(STREET_NAME_TAG);
+            this.laneCount = json.getInt(LANE_COUNT_TAG);
+            this.laneLength = json.getInt(LANE_LENGTH_TAG);
+            this.poleHeight = json.getInt(POLE_HEIGHT_TAG);
+            this.roadData = new LaneVO[laneCount];
+            JSONObject lightData = json.getJSONObject("lightData");
+            for (int i = 0; i < this.laneCount; i++){
+                roadData[i] = new LaneVO();
+                roadData[i].readString(lightData.getString(String.valueOf(i)));
+            }
         }
         catch (JSONException ex) {}
     }
