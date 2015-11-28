@@ -97,10 +97,6 @@ public class Activity_SetRoadData extends Activity {
             SharedData.activeRoad = new RoadDataVO(streetNameValue,laneCountValue,laneLengthValue,10);
 
             Intent res = new Intent(this,Activity_MeasureRoad.class);
-            res.putExtra(LightAnalyzerExtras.EXTRA_STREET_NAME,streetNameValue);
-            res.putExtra(LightAnalyzerExtras.EXTRA_POLE_HEIGHT, 10);
-            res.putExtra(LightAnalyzerExtras.EXTRA_LANE_COUNT,laneCountValue);
-            res.putExtra(LightAnalyzerExtras.EXTRA_POLE_COUNT,laneLengthValue);
             return res;
         }
         return null;

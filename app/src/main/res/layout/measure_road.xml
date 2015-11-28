@@ -66,6 +66,14 @@
                 android:onClick="newProjectHandler"
                 android:text="@string/newProjectBTN" />
 
+            <Button
+                android:id="@+id/mailBTN"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="emailHandler"
+                android:text="Email to self" />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

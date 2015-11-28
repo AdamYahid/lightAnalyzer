@@ -1,8 +1,11 @@
 package com.yahid.lightanalyzer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +25,8 @@ import android.os.Environment;
 import android.text.GetChars;
 import android.webkit.MimeTypeMap;
 
+import com.yahid.lightanalyzer.model.RoadDataVO;
+
 public class LocalProxy {
 
     private static final String FILE_EXTENSION = ".xls";
@@ -29,7 +34,7 @@ public class LocalProxy {
     private static final int FIRST_ROW = 2;
 
 
-    public static void createExcelSheet(Context context,ProjectVO proj) {
+    public static File createExcelSheet(Context context,RoadDataVO proj) {
         WritableWorkbook workbook;
         WritableSheet sheet;
         try {
@@ -38,23 +43,66 @@ public class LocalProxy {
             File file = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
             workbook = Workbook.createWorkbook(new File(file,proj.getStreetName()+LocalProxy.FILE_EXTENSION));
             sheet = workbook.createSheet("First Sheet", 0);
+            Label streetNameLbl = new Label(0,0, "Street name");
             Label streetName = new Label(1, 0, proj.getStreetName());
+            sheet.addCell(streetNameLbl);
             sheet.addCell(streetName);
+            Label poleHeightLbl = new Label(0,1,"Pole height");
             Number poleHeight = new Number(1, 1, proj.getPoleHeight());
+            sheet.addCell(poleHeightLbl);
             sheet.addCell(poleHeight);
 
-            for (int i = 0; i < proj.getHeight(); i++) {
-                for (int j = 0; j < proj.getWidth(); j++) {
-                    double value = proj.getValue(i, j);
+            for (int i = 0; i < proj.getLaneCount(); i++) {
+                for (int j = 0; j < proj.getLaneLength(); j++) {
+                    double value = proj.getDataPoint(i, j);
                     Number num = new Number(FIRST_COL + j,FIRST_ROW + i, value);
                     sheet.addCell(num);
                 }
             }
 
             // All sheets and cells added. Now write out the workbook
+
+
+            File actualFile = new File(file.getAbsolutePath(),proj.getStreetName() + ".xls");
+            workbook.setOutputFile(actualFile);
+
             workbook.write();
             workbook.close();
 
+
+            /*
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutput out = null;
+            byte[] yourBytes;
+            try {
+                out = new ObjectOutputStream(bos);
+                out.writeObject(workbook);
+                yourBytes = bos.toByteArray();
+            } finally {
+                try {
+                    if (out != null) {
+                        out.close();
+                    }
+                } catch (IOException ex) {
+                    // ignore close exception
+                }
+                try {
+                    bos.close();
+                } catch (IOException ex) {
+                    // ignore close exception
+                }
+            }
+
+
+
+
+            FileOutputStream fOut = new FileOutputStream(actualFile);
+            fOut.write(yourBytes);
+            fOut.close();
+*/
+
+            return actualFile;
+            /*
             String to[] = {"adam.yahid@gmail.com"};
 
             Intent i = new Intent(Intent.ACTION_SEND);
@@ -69,6 +117,7 @@ public class LocalProxy {
             //i.setType(mimeTypeForXLSFile);
             i.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file.getAbsolutePath()));
             context.startActivity(Intent.createChooser(i,"send email:"));
+*/
 
 
         } catch (IOException e) {
@@ -83,11 +132,12 @@ public class LocalProxy {
         {
             e.printStackTrace();
         }
+        return null;
     }
 
     public static void saveProject(Context context,String fileName, String projectAsJson) {
         try {
-            File myFile = new File(context.getFilesDir(),fileName + ".lap");
+            File myFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),fileName + ".lap");
             myFile.createNewFile();
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter =
@@ -101,7 +151,7 @@ public class LocalProxy {
 
     public static ArrayList<File> getFileList(Context context) {
         ArrayList<File> inFiles = new ArrayList<File>();
-        File[] files = context.getFilesDir().listFiles();
+        File[] files = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).listFiles();
         for (File file : files) {
                 if(file.getName().endsWith(".lap")){
                     inFiles.add(file);
