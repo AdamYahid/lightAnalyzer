@@ -10,7 +10,7 @@ public class YoctoProxy {
 
     private static YoctoProxy instance = null;
 
-    public static final Boolean DEBUG_MODE = true;
+    public static final Boolean DEBUG_MODE = false;
 
     private double maxValue;
     private double minValue;

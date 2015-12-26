@@ -87,7 +87,7 @@ public class Activity_MeasureRoad extends Activity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         Button b = (Button) v;
-        double currentLightValue = YoctoProxy.getInstance(null).readCurrentValue();
+        double currentLightValue = YoctoProxy.getInstance(this).readCurrentValue();
         int laneId = ((View)b.getParent()).getId();
         int indexInLane = b.getId();
         SharedData.activeRoad.setDataPoint(laneId, indexInLane, currentLightValue);
